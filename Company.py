@@ -11,4 +11,5 @@ class Company:
     def AddItemGroup(self, itemGroup):
         self.itemGroups.append(itemGroup);
     def AddItem(self, item):
-        self.items.append(item);
+        if (item.name != ''):
+            self.items.append(item);

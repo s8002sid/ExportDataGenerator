@@ -6,6 +6,35 @@ def AddMasterDet(etMasterSummary, type, len):
     ET.SubElement(etMasterDet, "MasterType").text = type;
     ET.SubElement(etMasterDet, "NoOfMasters").text = str(len);
 
+def GenerateChunkedXML(company, fileName):
+    tmpCompany = Company();
+    if (len(company.accounts) > 0):
+        tmpCompany.accounts = company.accounts;
+        tmpFileName = fileName + '_accounts.xml';
+        GenerateXML(tmpCompany, tmpFileName);
+        tmpCompany.accounts = [];
+    if (len(company.itemGroups) > 0):
+        tmpCompany.itemGroups = company.itemGroups;
+        tmpFileName = fileName + '_itemGroups.xml'
+        GenerateXML(tmpCompany, tmpFileName);
+        tmpCompany.itemGroups = [];
+    j = 1;
+    if (len(company.items) > 0):
+        start = 0;
+        while(True):
+            end = start + 10000;
+            if (end > len(company.items)):
+                end = len(company.items);
+            for i in range(start, end):
+                tmpCompany.AddItem(company.items[i]);
+            start = end;
+            tmpFileName = fileName + '_item' + '_' + str(j) +'.xml';
+            GenerateXML(tmpCompany, tmpFileName);
+            if (start == len(company.items)):
+                break;
+            tmpCompany.items = [];
+            j+=1;
+
 def GenerateXML(company, fileName):
     accounts = company.accounts;
     itemGroups = company.itemGroups;

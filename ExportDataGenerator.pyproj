@@ -31,6 +31,9 @@
     <Compile Include="DataReader.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ExcelGenerator.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ExcelReader.py">
       <SubType>Code</SubType>
     </Compile>
@@ -39,6 +42,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ItemGroup.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SQLReader.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="XMLGenerator.py">
